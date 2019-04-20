@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="QrCodeGenerator.Views.ConfigurationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QrCodeGenerator.Views"
+             xmlns:vm="clr-namespace:QrCodeGenerator.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:converters="clr-namespace:QrCodeGenerator.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800">
+    <UserControl.Resources>
+        <vm:ConfigurationViewModel x:Key="configVM" />
+        <converters:ColorConverter x:Key="ColorConverter" />
+        <converters:ColorToStringConverter x:Key="ColorToStringConverter" />
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource configVM}" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="0" Margin="5"
+                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                  Header="Generator">
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Row="0" Margin="5" 
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          ItemsSource="{Binding AllEccLevel}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Config.EccLevel}"
+                          materialDesign:HintAssist.Hint="ECC Level">
+                </ComboBox>
+                <CheckBox Grid.Row="1" Margin="5" 
+                          IsChecked="{Binding Config.ForceUtf8}">
+                    <TextBlock Text="Force UTF8" />
+                </CheckBox>
+                <CheckBox Grid.Row="2" Margin="5"
+                          IsChecked="{Binding Config.Utf8Bom}">
+                    <TextBlock Text="UTF8 BOM" />
+                </CheckBox>
+                <ComboBox Grid.Row="3" Margin="5"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          ItemsSource="{Binding AllEciMode}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Config.EciMode}"
+                          materialDesign:HintAssist.Hint="ECI Mode">
+                </ComboBox>
+                <TextBox Grid.Row="4" Margin="5"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding Config.RequestedVersion}"
+                         materialDesign:HintAssist.Hint="Requested Version" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Margin="5"
+                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                  Header="Graphic">
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="20px" Height="20px">
+                            <Rectangle.Effect>
+                                <DropShadowEffect BlurRadius="5" ShadowDepth="0" />
+                            </Rectangle.Effect>
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{Binding Config.DarkColor, Converter={StaticResource ColorConverter}}"></SolidColorBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBox Margin="5 0" VerticalAlignment="Center" 
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Text="{Binding Config.DarkColor, Converter={StaticResource ColorToStringConverter}}" 
+                                 materialDesign:HintAssist.Hint="Dark Color"/>
+                    </StackPanel>
+                </Label>
+
+                <Label Grid.Row="1" Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="20px" Height="20px">
+                            <Rectangle.Effect>
+                                <DropShadowEffect BlurRadius="5" ShadowDepth="0" />
+                            </Rectangle.Effect>
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{Binding Config.LightColor, Converter={StaticResource ColorConverter}}"></SolidColorBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBox Margin="5 0" VerticalAlignment="Center" 
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Text="{Binding Config.LightColor, Converter={StaticResource ColorToStringConverter}}" 
+                                 materialDesign:HintAssist.Hint="Dark Color"/>
+                    </StackPanel>
+                </Label>
+                <TextBox Grid.Row="2" Margin="5"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding Config.PixelsPerModule}"
+                         materialDesign:HintAssist.Hint="Module Size (pixel)" />
+                <CheckBox Grid.Row="3" Margin="5"
+                          IsChecked="{Binding Config.DrawQuietZones}">
+                    <TextBlock Text="Draw Quiet Zones"></TextBlock>
+                </CheckBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="2" Margin="5"
+                  Style="{DynamicResource MaterialDesignCardGroupBox}"
+                  Header="Icon">
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <CheckBox Grid.Row="0" Margin="5"
+                          IsChecked="{Binding Config.DrawIcon}">
+                    <TextBlock Text="Draw Icon" />
+                </CheckBox>
+                <Button Grid.Row="1" Margin="5" Padding="0" Command="{Binding ChangeIconCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding IconBitmapImage}" Margin="2" />
+                        <TextBlock VerticalAlignment="Center" 
+                                   Text="Change Icon" />
+                    </StackPanel>
+                </Button>
+                <TextBox Grid.Row="2" Margin="5"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding Config.IconSizePercent}"
+                         materialDesign:HintAssist.Hint="Icon Size (%)" />
+                <TextBox Grid.Row="3" Margin="5"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding Config.IconBorderWidth}" 
+                         materialDesign:HintAssist.Hint="Icon Border (pixel)"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="3" Margin="5" Header="Encoder"
+                  Style="{DynamicResource MaterialDesignCardGroupBox}">
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Row="0" Margin="5"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          ItemsSource="{Binding Config.AllImageFormat}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding Config.Format}"
+                          materialDesign:HintAssist.Hint="Format" />
+                <TextBox Grid.Row="1" Margin="5"
+                         Text="{Binding Config.Quality}"
+                         materialDesign:HintAssist.Hint="Quality" />
+                <TextBox Grid.Row="2" Margin="5"
+                         Text="{Binding Config.Dpi}"
+                         materialDesign:HintAssist.Hint="DPI" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
