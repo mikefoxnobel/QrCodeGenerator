@@ -106,6 +106,7 @@
     <Compile Include="Helpers\EnumExtension.cs" />
     <Compile Include="Models\Core.cs" />
     <Compile Include="Models\QrGeneralConfiguration.cs" />
+    <Compile Include="Validators\QrVersionValidationRule.cs" />
     <Compile Include="ViewModels\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MultiLineQrViewModel.cs" />

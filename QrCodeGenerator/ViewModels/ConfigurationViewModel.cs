@@ -27,15 +27,45 @@ namespace QrCodeGenerator.ViewModels
         public QrGeneralConfiguration Config => Core.Instance.Config;
         public IEnumerable<KeyValuePair<QRCodeGenerator.ECCLevel, string>> AllEccLevel => EnumExtension.GetAllValuesAndDescriptions<QRCodeGenerator.ECCLevel>();
         public IEnumerable<KeyValuePair<QRCodeGenerator.EciMode, string>> AllEciMode => EnumExtension.GetAllValuesAndDescriptions<QRCodeGenerator.EciMode>();
+        public List<KeyValuePair<int, string>> AllVersions { get; } = new List<KeyValuePair<int, string>>();
+        public Dictionary<QRCodeGenerator.ECCLevel, int> AllEccPercentage { get; } = new Dictionary<QRCodeGenerator.ECCLevel, int>()
+        {
+            { QRCodeGenerator.ECCLevel.L, 7 },
+            { QRCodeGenerator.ECCLevel.M, 15 },
+            { QRCodeGenerator.ECCLevel.Q, 25 },
+            { QRCodeGenerator.ECCLevel.H, 30 }
+        };
 
         public BitmapImage IconBitmapImage => this.Config.IconBitmap?.ToWpfBitmap();
+
+        public int SelectedEccPercentage => this.AllEccPercentage[this.Config.EccLevel];
         #endregion
 
         #region Command
-        public ICommand ChangeIconCommand => new DelegateCommand(OnChangeIcon);
+        public ICommand ChangeIconCommand => new DelegateCommand(this.OnChangeIcon);
         #endregion
 
         #region Event
+
+        public ConfigurationViewModel()
+        {
+            this.AllVersions.Add(new KeyValuePair<int, string>(-1, "Auto"));
+            for (int i = 1; i <= 40; i++)
+            {
+                this.AllVersions.Add(new KeyValuePair<int, string>(i, i.ToString()));
+            }
+            this.Config.PropertyChanged += Config_PropertyChanged;
+        }
+
+        private void Config_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(this.Config.EccLevel):
+                    this.RaisePropertyChanged(nameof(this.SelectedEccPercentage));
+                    break;
+            }
+        }
 
         private void OnChangeIcon()
         {
@@ -43,7 +73,7 @@ namespace QrCodeGenerator.ViewModels
             {
                 this._iconOpenFileDialog = new OpenFileDialog
                 {
-                    Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; | All files | *",
+                    Filter = "Image files (*.bmp, *.jpg, *.jpeg, *.jpe, *.jfif, *.png, *.gif, *.tif, *.tiff) | *.bmp; *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.gif; *.tif; *.tiff; | All files | *",
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
                     Multiselect = false,
                 };
@@ -60,9 +90,9 @@ namespace QrCodeGenerator.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    
+
                 }
-                
+
             }
         }
         #endregion

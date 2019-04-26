@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using MaterialDesignThemes.Wpf;
 using Prism.Commands;
 using Prism.Mvvm;
 using QrCodeGenerator.Helpers;
 using QrCodeGenerator.Models;
+using Clipboard = System.Windows.Clipboard;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace QrCodeGenerator.ViewModels
@@ -29,6 +32,7 @@ namespace QrCodeGenerator.ViewModels
         private int _lineCount = 0;
         private int _imageSavedCount = 0;
         private bool _enableView = false;
+        private SnackbarMessageQueue _messageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(0.5));
         #endregion
 
         #region Property
@@ -45,6 +49,12 @@ namespace QrCodeGenerator.ViewModels
                     this.EnableView = false;
                 }
             }
+        }
+
+        public SnackbarMessageQueue MessageQueue
+        {
+            get { return this._messageQueue; }
+            set { this.SetProperty(ref this._messageQueue, value); }
         }
 
         public ImageSource Image
@@ -95,13 +105,14 @@ namespace QrCodeGenerator.ViewModels
         #region Command
         public ICommand GenerateCommand => new DelegateCommand(this.OnGenerate);
         public ICommand SaveCommand => new DelegateCommand(this.OnSave);
+        public ICommand CopyCommand => new DelegateCommand(this.OnCopy);
         public ICommand PreviousLineCommand => new DelegateCommand(this.OnPreviousLine);
         public ICommand NextLineCommand => new DelegateCommand(this.OnNextLine);
         #endregion
 
         public MultiLineQrViewModel()
         {
-            this.PropertyChanged += MultiLineQrViewModel_PropertyChanged;
+            this.PropertyChanged += this.MultiLineQrViewModel_PropertyChanged;
         }
 
         private void MultiLineQrViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -128,7 +139,25 @@ namespace QrCodeGenerator.ViewModels
             this.LineCount = this._textLines.Length;
             this.LineIndex = 1;
             this.EnableView = true;
+
+            if (this.LineIndex > 0 && this.LineIndex <= this.LineCount)
+            {
+                this.SetImage(this._textLines[this.LineIndex - 1]);
+            }
         }
+        private void OnCopy()
+        {
+            if (this.Image != null)
+            {
+                Clipboard.SetImage(this.Image as BitmapSource);
+                this.MessageQueue.Enqueue("QR Code copied to clipboard.");
+            }
+            else
+            {
+                this.MessageQueue.Enqueue("No QR Code to copy.");
+            }
+        }
+
 
         private async void OnSave()
         {
@@ -157,6 +186,7 @@ namespace QrCodeGenerator.ViewModels
                         Bitmap bitmap = this._helper.GenerateAndSaveQrBitmap(this._textLines[i], filename);
                         this.ImageSavedCount = i + 1;
                     }
+                    this.MessageQueue.Enqueue($"{this.LineCount} QR Codes saved.");
                 });
             }
 

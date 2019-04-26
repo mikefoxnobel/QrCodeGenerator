@@ -33,11 +33,18 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <ComboBox Grid.Row="0" Margin="5" 
-                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                          ItemsSource="{Binding AllEccLevel}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Config.EccLevel}"
-                          materialDesign:HintAssist.Hint="ECC Level">
-                </ComboBox>
+                <DockPanel Grid.Row="0">
+                    <TextBlock DockPanel.Dock="Right" Margin="5" VerticalAlignment="Bottom"
+                               >
+                        <Run Text="{Binding SelectedEccPercentage, Mode=OneWay}" />
+                        <Run Text="%" />
+                    </TextBlock>
+                    <ComboBox Margin="5" 
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              ItemsSource="{Binding AllEccLevel}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Config.EccLevel}"
+                              materialDesign:HintAssist.Hint="ECC Level">
+                    </ComboBox>
+                </DockPanel>
                 <CheckBox Grid.Row="1" Margin="5" 
                           IsChecked="{Binding Config.ForceUtf8}">
                     <TextBlock Text="Force UTF8" />
@@ -51,9 +58,9 @@
                           ItemsSource="{Binding AllEciMode}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Config.EciMode}"
                           materialDesign:HintAssist.Hint="ECI Mode">
                 </ComboBox>
-                <TextBox Grid.Row="4" Margin="5"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="{Binding Config.RequestedVersion}"
+                <ComboBox Grid.Row="4" Margin="5"
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                         ItemsSource="{Binding AllVersions}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Config.RequestedVersion}"
                          materialDesign:HintAssist.Hint="Requested Version" />
             </Grid>
         </GroupBox>
@@ -97,7 +104,7 @@
                         <TextBox Margin="5 0" VerticalAlignment="Center" 
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Text="{Binding Config.LightColor, Converter={StaticResource ColorToStringConverter}}" 
-                                 materialDesign:HintAssist.Hint="Dark Color"/>
+                                 materialDesign:HintAssist.Hint="Light Color"/>
                     </StackPanel>
                 </Label>
                 <TextBox Grid.Row="2" Margin="5"
@@ -154,9 +161,11 @@
                           ItemsSource="{Binding Config.AllImageFormat}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding Config.Format}"
                           materialDesign:HintAssist.Hint="Format" />
                 <TextBox Grid.Row="1" Margin="5"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Text="{Binding Config.Quality}"
                          materialDesign:HintAssist.Hint="Quality" />
                 <TextBox Grid.Row="2" Margin="5"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Text="{Binding Config.Dpi}"
                          materialDesign:HintAssist.Hint="DPI" />
             </Grid>
