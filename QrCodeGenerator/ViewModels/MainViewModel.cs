@@ -35,6 +35,7 @@ namespace QrCodeGenerator.ViewModels
 
             this.QrCodeModeList.Add("Text Mode", new TextQrView());
             this.QrCodeModeList.Add("Multiple Lines Mode", new MultiLineQrView());
+            this.QrCodeModeList.Add("Json Mode", new JsonQrView());
             this.RaisePropertyChanged(nameof(this.QrCodeModeList));
 
             this.SelectedView = this.QrCodeModeList["Text Mode"];

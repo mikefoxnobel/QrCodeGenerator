@@ -27,6 +27,11 @@ namespace QrCodeGenerator.Helpers
         }
         #endregion
 
+        public Bitmap GenerateQrBitmap(PayloadGenerator.Payload payload)
+        {
+            QRCodeData qrCodeData = this._qrGenerator.CreateQrCode(payload, this._config.EccLevel);
+        }
+
         public Bitmap GenerateQrBitmap(string text)
         {
             QRCodeData qrCodeData = this._qrGenerator.CreateQrCode(text, this._config.EccLevel, this._config.ForceUtf8, this._config.Utf8Bom, this._config.EciMode, this._config.RequestedVersion);

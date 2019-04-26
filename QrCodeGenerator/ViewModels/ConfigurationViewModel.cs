@@ -22,7 +22,6 @@ namespace QrCodeGenerator.ViewModels
         private OpenFileDialog _iconOpenFileDialog;
         #endregion
 
-
         #region Property
         public QrGeneralConfiguration Config => Core.Instance.Config;
         public IEnumerable<KeyValuePair<QRCodeGenerator.ECCLevel, string>> AllEccLevel => EnumExtension.GetAllValuesAndDescriptions<QRCodeGenerator.ECCLevel>();
