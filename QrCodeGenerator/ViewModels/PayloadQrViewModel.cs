@@ -1,8 +1,6 @@
-﻿using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,28 +9,31 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using Prism.Commands;
+using Prism.Mvvm;
 using QrCodeGenerator.Helpers;
 using QrCodeGenerator.Models;
-using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+using QRCoder;
 
 namespace QrCodeGenerator.ViewModels
 {
-    public class TextQrViewModel : BindableBase
+    public class PayloadQrViewModel : BindableBase
     {
         private QrCodeHelper _helper => Core.Instance.QrHelper;
         private SaveFileDialog _saveFileDialog;
         #region Field
-        private string _text = string.Empty;
+
+        private PayloadGenerator.Payload _payload = null;
         private ImageSource _image = null;
         private SnackbarMessageQueue _messageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(0.5));
         #endregion
 
         #region Property
-        public string Text
+        public PayloadGenerator.Payload Payload
         {
-            get { return this._text; }
-            set { this.SetProperty(ref this._text, value); }
+            get { return this._payload; }
+            set { this.SetProperty(ref this._payload, value); }
         }
 
         public ImageSource Image
@@ -50,14 +51,14 @@ namespace QrCodeGenerator.ViewModels
 
         #region Command
         public ICommand GenerateCommand => new DelegateCommand<string>(this.OnGenerate);
-        public ICommand SaveCommand => new DelegateCommand<string>(this.OnSave);
+        public ICommand SaveCommand => new DelegateCommand<PayloadGenerator.Payload>(this.OnSave);
         public ICommand CopyCommand => new DelegateCommand(this.OnCopy);
         #endregion
 
         private void SetImage(string text)
         {
             Bitmap bitmap = this._helper.GenerateQrBitmap(text);
-            this.Image = bitmap.ToWpfBitmapSource();
+            this.Image = bitmap.ToWpfBitmap();
         }
 
         private void OnGenerate(string text)
@@ -78,7 +79,7 @@ namespace QrCodeGenerator.ViewModels
             }
         }
 
-        private void OnSave(string text)
+        private void OnSave(PayloadGenerator.Payload payload)
         {
             if (this._saveFileDialog == null)
             {
@@ -96,10 +97,11 @@ namespace QrCodeGenerator.ViewModels
             bool? result = this._saveFileDialog.ShowDialog();
             if (result.HasValue && result.Value)
             {
-                Bitmap bitmap = this._helper.GenerateAndSaveQrBitmap(text, this._saveFileDialog.FileName);
+                Bitmap bitmap = this._helper.GenerateAndSaveQrBitmap(payload, this._saveFileDialog.FileName);
                 this.Image = bitmap.ToWpfBitmap();
                 this.MessageQueue.Enqueue("Image Saved.");
             }
         }
+
     }
 }
