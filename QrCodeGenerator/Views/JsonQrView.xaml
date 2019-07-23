@@ -9,10 +9,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <viewModels:MultiLineQrViewModel x:Key="multiLineQrVM" />
-    </UserControl.Resources>
-    <Grid DataContext="{StaticResource multiLineQrVM}">
+    <Grid DataContext="{StaticResource jsonQrVM}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />

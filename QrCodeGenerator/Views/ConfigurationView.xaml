@@ -10,11 +10,6 @@
              xmlns:converters="clr-namespace:QrCodeGenerator.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="800">
-    <UserControl.Resources>
-        <vm:ConfigurationViewModel x:Key="configVM" />
-        <converters:ColorConverter x:Key="ColorConverter" />
-        <converters:ColorToStringConverter x:Key="ColorToStringConverter" />
-    </UserControl.Resources>
     <Grid DataContext="{StaticResource configVM}" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

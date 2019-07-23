@@ -143,6 +143,13 @@
     <Compile Include="Views\MultiLineQrView.xaml.cs">
       <DependentUpon>MultiLineQrView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PayloadQrView.xaml.cs">
+      <DependentUpon>PayloadQrView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\PayloadViewBase.cs" />
+    <Compile Include="Views\PayloadViews\WifiPayloadView.xaml.cs">
+      <DependentUpon>WifiPayloadView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TextQrView.xaml.cs">
       <DependentUpon>TextQrView.xaml</DependentUpon>
     </Compile>
@@ -159,7 +166,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\ConverterResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\StyleResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ViewModelResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,6 +187,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MultiLineQrView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PayloadQrView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PayloadViews\WifiPayloadView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

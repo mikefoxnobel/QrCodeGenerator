@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QrCodeGenerator.Helpers;
 
 namespace QrCodeGenerator.ViewModels.PayloadViewModels
 {
     public class WifiPayloadViewModel : BindableBase, IPayloadViewModel
     {
-        private string _ssid;
-        private string _password;
-        private PayloadGenerator.WiFi.Authentication _authenticationMode;
-        private bool _isHiddenSSID;
+        private string _ssid = string.Empty;
+        private string _password = string.Empty;
+        private PayloadGenerator.WiFi.Authentication _authenticationMode = PayloadGenerator.WiFi.Authentication.WPA;
+        private bool _isHiddenSSID = false;
 
         public string Ssid
         {
@@ -39,6 +40,8 @@ namespace QrCodeGenerator.ViewModels.PayloadViewModels
             set { this._isHiddenSSID = value; }
         }
 
-        PayloadGenerator.Payload IPayloadViewModel.Payload => throw new NotImplementedException();
+        public IEnumerable<KeyValuePair<PayloadGenerator.WiFi.Authentication, string>> AllAuthenticationModes => EnumExtension.GetAllValuesAndDescriptions<PayloadGenerator.WiFi.Authentication>();
+
+        PayloadGenerator.Payload IPayloadViewModel.Payload => new PayloadGenerator.WiFi(this.Ssid, this.Password, this.AuthenticationMode, this.IsHiddenSsid);
     }
 }

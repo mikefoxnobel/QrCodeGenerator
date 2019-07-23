@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,9 @@ using Prism.Commands;
 using Prism.Mvvm;
 using QrCodeGenerator.Helpers;
 using QrCodeGenerator.Models;
+using QrCodeGenerator.ViewModels.PayloadViewModels;
+using QrCodeGenerator.Views;
+using QrCodeGenerator.Views.PayloadViews;
 using QRCoder;
 
 namespace QrCodeGenerator.ViewModels
@@ -23,19 +27,13 @@ namespace QrCodeGenerator.ViewModels
         private QrCodeHelper _helper => Core.Instance.QrHelper;
         private SaveFileDialog _saveFileDialog;
         #region Field
-
-        private PayloadGenerator.Payload _payload = null;
         private ImageSource _image = null;
         private SnackbarMessageQueue _messageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(0.5));
+        private PayloadViewBase _selectedPayloadView;
+        private Dictionary<string, PayloadViewBase> _payloadViewList = new Dictionary<string, PayloadViewBase>();
         #endregion
 
         #region Property
-        public PayloadGenerator.Payload Payload
-        {
-            get { return this._payload; }
-            set { this.SetProperty(ref this._payload, value); }
-        }
-
         public ImageSource Image
         {
             get { return this._image; }
@@ -47,23 +45,52 @@ namespace QrCodeGenerator.ViewModels
             get { return this._messageQueue; }
             set { this.SetProperty(ref this._messageQueue, value); }
         }
+
+        public PayloadViewBase SelectedPayloadView
+        {
+            get { return this._selectedPayloadView; }
+            set { this._selectedPayloadView = value; }
+        }
+
+        public Dictionary<string, PayloadViewBase> PayloadViewList
+        {
+            get { return this._payloadViewList; }
+            set { this._payloadViewList = value; }
+        }
+
+        public IPayloadViewModel PayloadViewModel => this.SelectedPayloadView?.PayloadViewModel;
+
+        public PayloadGenerator.Payload Payload => this.PayloadViewModel?.Payload;
         #endregion
 
         #region Command
-        public ICommand GenerateCommand => new DelegateCommand<string>(this.OnGenerate);
+        public ICommand GenerateCommand => new DelegateCommand(this.OnGenerate);
         public ICommand SaveCommand => new DelegateCommand<PayloadGenerator.Payload>(this.OnSave);
         public ICommand CopyCommand => new DelegateCommand(this.OnCopy);
+
         #endregion
 
-        private void SetImage(string text)
+        public PayloadQrViewModel()
         {
-            Bitmap bitmap = this._helper.GenerateQrBitmap(text);
+            this.InitPayloadViewList();
+        }
+
+        private void InitPayloadViewList()
+        {
+            this.PayloadViewList.Add("Wifi", new WifiPayloadView());
+
+            this.SelectedPayloadView = this.PayloadViewList["Wifi"];
+        }
+
+        private void SetImage(PayloadGenerator.Payload payload)
+        {
+            Bitmap bitmap = this._helper.GenerateQrBitmap(payload);
             this.Image = bitmap.ToWpfBitmap();
         }
 
-        private void OnGenerate(string text)
+        private void OnGenerate()
         {
-            this.SetImage(text);
+            this.SetImage(this.Payload);
         }
 
         private void OnCopy()

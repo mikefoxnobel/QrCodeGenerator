@@ -9,9 +9,6 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
-    <Window.Resources>
-        <vm:MainViewModel x:Key="mainVM" />
-    </Window.Resources>
     <DockPanel DataContext="{StaticResource mainVM}">
         <materialDesign:Card DockPanel.Dock="Top" Margin="5">
             <Grid>
