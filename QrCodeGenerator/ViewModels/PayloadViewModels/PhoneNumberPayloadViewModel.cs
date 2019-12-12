@@ -18,6 +18,6 @@ namespace QrCodeGenerator.ViewModels.PayloadViewModels
             set { this._number = value; }
         }
 
-        PayloadGenerator.Payload IPayloadViewModel.Payload => throw new NotImplementedException();
+        PayloadGenerator.Payload IPayloadViewModel.Payload => new PayloadGenerator.PhoneNumber(this.Number);
     }
 }

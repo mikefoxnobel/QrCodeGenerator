@@ -49,8 +49,14 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Ninject.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Ninject.7.2.0.1422\lib\net45\Prism.Ninject.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
@@ -109,6 +115,7 @@
     <Compile Include="Converters\ColorToStringConverter.cs" />
     <Compile Include="Helpers\BitmapExtension.cs" />
     <Compile Include="Helpers\EnumExtension.cs" />
+    <Compile Include="Helpers\IQrCodeHelper.cs" />
     <Compile Include="Models\Core.cs" />
     <Compile Include="Models\QrGeneralConfiguration.cs" />
     <Compile Include="Validators\QrVersionValidationRule.cs" />
@@ -152,6 +159,9 @@
       <DependentUpon>PayloadQrView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PayloadViews\PayloadViewBase.cs" />
+    <Compile Include="Views\PayloadViews\PhoneNumberPayloadView.xaml.cs">
+      <DependentUpon>PhoneNumberPayloadView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PayloadViews\WifiPayloadView.xaml.cs">
       <DependentUpon>WifiPayloadView.xaml</DependentUpon>
     </Compile>
@@ -196,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PayloadQrView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PayloadViews\PhoneNumberPayloadView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

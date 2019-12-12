@@ -8,8 +8,9 @@
         xmlns:v="clr-namespace:QrCodeGenerator.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
-    <DockPanel DataContext="{StaticResource mainVM}">
+        Title="MainWindow" Height="720" Width="1280"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}">
+    <DockPanel>
         <materialDesign:Card DockPanel.Dock="Top" Margin="5">
             <Grid>
                 <ComboBox Grid.Row="0"

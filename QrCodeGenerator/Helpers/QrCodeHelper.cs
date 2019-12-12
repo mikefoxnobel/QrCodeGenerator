@@ -13,7 +13,7 @@ using QrCodeGenerator.Models;
 
 namespace QrCodeGenerator.Helpers
 {
-    public class QrCodeHelper
+    public class QrCodeHelper : IQrCodeHelper
     {
         #region Field
         private QRCodeGenerator _qrGenerator = new QRCodeGenerator();
