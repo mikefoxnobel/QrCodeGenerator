@@ -5,6 +5,8 @@
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                        xmlns:local="clr-namespace:QrCodeGenerator.Views.PayloadViews"
                        xmlns:payloadViewModels="clr-namespace:QrCodeGenerator.ViewModels.PayloadViewModels"
+                       xmlns:mvvm="http://prismlibrary.com/"
+                       mvvm:ViewModelLocator.AutoWireViewModel="True"
                        mc:Ignorable="d" 
                        d:DesignHeight="450" d:DesignWidth="300" 
                        d:DataContext="{d:DesignInstance payloadViewModels:PhoneNumberPayloadViewModel, IsDesignTimeCreatable=True}">

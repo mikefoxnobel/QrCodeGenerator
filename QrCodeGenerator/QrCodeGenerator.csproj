@@ -158,9 +158,63 @@
     <Compile Include="Views\PayloadQrView.xaml.cs">
       <DependentUpon>PayloadQrView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PayloadViews\BezahlCodePayloadView.xaml.cs">
+      <DependentUpon>BezahlCodePayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\BitcoinAddressPayloadView.xaml.cs">
+      <DependentUpon>BitcoinAddressPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\BookmarkPayloadView.xaml.cs">
+      <DependentUpon>BookmarkPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\CalendarEventPayloadView.xaml.cs">
+      <DependentUpon>CalendarEventPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\ContactDataPayloadView.xaml.cs">
+      <DependentUpon>ContactDataPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\GeolocationPayloadView.xaml.cs">
+      <DependentUpon>GeolocationPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\GirocodePayloadView.xaml.cs">
+      <DependentUpon>GirocodePayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\MailPayloadView.xaml.cs">
+      <DependentUpon>MailPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\MmsPayloadView.xaml.cs">
+      <DependentUpon>MmsPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\MoneroTransactionPayloadView.xaml.cs">
+      <DependentUpon>MoneroTransactionPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\OneTimePasswordPayloadView.xaml.cs">
+      <DependentUpon>OneTimePasswordPayloadView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PayloadViews\PayloadViewBase.cs" />
     <Compile Include="Views\PayloadViews\PhoneNumberPayloadView.xaml.cs">
       <DependentUpon>PhoneNumberPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\ShadowSocksConfigPayloadView.xaml.cs">
+      <DependentUpon>ShadowSocksConfigPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\SkypeCallPayloadView.xaml.cs">
+      <DependentUpon>SkypeCallPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\SlovenianUpnQrPayloadView.xaml.cs">
+      <DependentUpon>SlovenianUpnQrPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\SmsPayloadView.xaml.cs">
+      <DependentUpon>SmsPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\SwissQrCodePayloadView.xaml.cs">
+      <DependentUpon>SwissQrCodePayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\UrlPayloadView.xaml.cs">
+      <DependentUpon>UrlPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayloadViews\WhatsAppMessagePayloadView.xaml.cs">
+      <DependentUpon>WhatsAppMessagePayloadView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PayloadViews\WifiPayloadView.xaml.cs">
       <DependentUpon>WifiPayloadView.xaml</DependentUpon>
@@ -189,10 +243,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\ViewModelResource.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ConfigurationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,9 +259,81 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PayloadViews\BezahlCodePayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\BitcoinAddressPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\BookmarkPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\CalendarEventPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\ContactDataPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\GeolocationPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\GirocodePayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\MailPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\MmsPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\MoneroTransactionPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\OneTimePasswordPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\PayloadViews\PhoneNumberPayloadView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PayloadViews\ShadowSocksConfigPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\SkypeCallPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\SlovenianUpnQrPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\SmsPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\SwissQrCodePayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\UrlPayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PayloadViews\WhatsAppMessagePayloadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PayloadViews\WifiPayloadView.xaml">
       <SubType>Designer</SubType>

@@ -7,6 +7,8 @@
         xmlns:vm="clr-namespace:QrCodeGenerator.ViewModels"
         xmlns:v="clr-namespace:QrCodeGenerator.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mvvm="http://prismlibrary.com/"
+        mvvm:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}">

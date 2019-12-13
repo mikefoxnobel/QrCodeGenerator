@@ -78,6 +78,25 @@ namespace QrCodeGenerator.ViewModels
         private void InitPayloadViewList()
         {
             this.PayloadViewList.Add("Wifi", new WifiPayloadView());
+            this.PayloadViewList.Add("Bezahl Code", new BezahlCodePayloadView());
+            this.PayloadViewList.Add("Bitcoin Address", new BitcoinAddressPayloadView());
+            this.PayloadViewList.Add("Bookmark", new BookmarkPayloadView());
+            this.PayloadViewList.Add("Calendar Event", new CalendarEventPayloadView());
+            this.PayloadViewList.Add("Contact Data", new ContactDataPayloadView());
+            this.PayloadViewList.Add("Geolocation", new GeolocationPayloadView());
+            this.PayloadViewList.Add("Girocode", new GirocodePayloadView());
+            this.PayloadViewList.Add("Mail", new MailPayloadView());
+            this.PayloadViewList.Add("MMS", new MmsPayloadView());
+            this.PayloadViewList.Add("Monero Transaction", new MoneroTransactionPayloadView());
+            this.PayloadViewList.Add("One Time Password", new OneTimePasswordPayloadView());
+            this.PayloadViewList.Add("Phone Number", new PhoneNumberPayloadView());
+            this.PayloadViewList.Add("Shadow Socks Config", new ShadowSocksConfigPayloadView());
+            this.PayloadViewList.Add("Skype Call", new SkypeCallPayloadView());
+            this.PayloadViewList.Add("Slovenian UPN QR", new SlovenianUpnQrPayloadView());
+            this.PayloadViewList.Add("SMS", new SmsPayloadView());
+            this.PayloadViewList.Add("Swiss QR Code", new SwissQrCodePayloadView());
+            this.PayloadViewList.Add("URL", new UrlPayloadView());
+            this.PayloadViewList.Add("WhatsApp Message", new WhatsAppMessagePayloadView());
 
             this.SelectedPayloadView = this.PayloadViewList["Wifi"];
         }

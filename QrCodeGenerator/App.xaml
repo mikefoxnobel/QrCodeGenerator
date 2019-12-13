@@ -7,7 +7,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources\StyleResource.xaml" />
-                <ResourceDictionary Source="Resources\ViewModelResource.xaml" />
                 <ResourceDictionary Source="Resources\ConverterResource.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
