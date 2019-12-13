@@ -46,7 +46,7 @@ namespace QrCodeGenerator.Helpers
         {
             Bitmap bitmap = this.GenerateQrBitmap(text);
             bitmap.Save(filename, this.Config.Codec, this.Config.EncoderParameters);
-            Graphics gfx = Graphics.FromImage(bitmap);
+            // Graphics gfx = Graphics.FromImage(bitmap);
             return bitmap;
         }
 

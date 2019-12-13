@@ -135,7 +135,7 @@ namespace QrCodeGenerator.Helpers
             if (pixelFormat == System.Drawing.Imaging.PixelFormat.Undefined)
                 return System.Windows.Media.PixelFormats.Default;
 
-            throw new NotSupportedException("Convertion not supported with " + pixelFormat.ToString());
+            throw new NotSupportedException("Convertor doesn't supported " + pixelFormat.ToString());
         }
 
         public static System.Drawing.Imaging.PixelFormat Convert(this System.Windows.Media.PixelFormat pixelFormat)
@@ -197,7 +197,7 @@ namespace QrCodeGenerator.Helpers
             if (pixelFormat == System.Windows.Media.PixelFormats.Default)
                 return System.Drawing.Imaging.PixelFormat.Undefined;
 
-            throw new NotSupportedException("Convertion not supported with " + pixelFormat.ToString());
+            throw new NotSupportedException("Convertor doesn't supported " + pixelFormat.ToString());
         }
     }
 }

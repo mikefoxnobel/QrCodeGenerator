@@ -115,6 +115,7 @@
     <Compile Include="Converters\ColorToStringConverter.cs" />
     <Compile Include="Helpers\BitmapExtension.cs" />
     <Compile Include="Helpers\EnumExtension.cs" />
+    <Compile Include="Helpers\FrameworkElementExtension.cs" />
     <Compile Include="Helpers\IQrCodeHelper.cs" />
     <Compile Include="Models\Core.cs" />
     <Compile Include="Models\QrGeneralConfiguration.cs" />
@@ -218,6 +219,13 @@
     </Compile>
     <Compile Include="Views\PayloadViews\WifiPayloadView.xaml.cs">
       <DependentUpon>WifiPayloadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PreviewViews\MaskPreviewView.xaml.cs">
+      <DependentUpon>MaskPreviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PreviewViews\PreviewViewBase.cs" />
+    <Compile Include="Views\PreviewViews\StandardPreviewView.xaml.cs">
+      <DependentUpon>StandardPreviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TextQrView.xaml.cs">
       <DependentUpon>TextQrView.xaml</DependentUpon>
@@ -336,6 +344,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PayloadViews\WifiPayloadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PreviewViews\MaskPreviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PreviewViews\StandardPreviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
