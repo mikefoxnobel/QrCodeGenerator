@@ -23,7 +23,7 @@
                   Style="{DynamicResource MaterialDesignCardGroupBox}"
                   Header="QR Information">
             <TextBox Margin="5" TextWrapping="Wrap"
-                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      Text="{Binding Text}" MaxLines="999" AllowDrop="True" AcceptsTab="True" AcceptsReturn="True" 
                      materialDesign:HintAssist.Hint="QR Text" />
         </GroupBox>
@@ -42,13 +42,13 @@
         <GroupBox Grid.Column="2" Margin="5"
                   Style="{DynamicResource MaterialDesignCardGroupBox}"
                   Header="Preview">
-            <previewViews:MaskPreviewView Margin="10" QrImage="{Binding Image}">
+            <previewViews:StandardPreviewView Margin="10" QrImage="{Binding Image}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseUp">
                         <i:InvokeCommandAction Command="{Binding CopyCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </previewViews:MaskPreviewView>
+            </previewViews:StandardPreviewView>
         </GroupBox>
         <materialDesign:Snackbar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                                  MessageQueue="{Binding MessageQueue}" />

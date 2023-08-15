@@ -21,7 +21,7 @@
                   Style="{DynamicResource MaterialDesignCardGroupBox}"
                   Header="QR Information">
             <TextBox Margin="5" 
-                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      TextWrapping="NoWrap"
                      Text="{Binding Text}" MaxLines="999" AllowDrop="True" AcceptsTab="True" AcceptsReturn="True" 
                      materialDesign:HintAssist.Hint="Each line to a QR, include empty line." />
